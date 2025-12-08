@@ -338,12 +338,26 @@
             background-repeat: no-repeat;
         }
 
-        /* Individual slide backgrounds */
+        /* Individual slide backgrounds and text colors */
+        /* White background = burgundy text */
         #slide0 { background-image: url('Texture%20Background%20white.webp'); }
+        #slide0 .bg-title, #slide0 .bg-name-left, #slide0 .bg-name-right { color: #722F37 !important; }
+        
+        /* Burgundy background = gold text */
         #slide1 { background-image: url('Texture%20Background%20Burgendy.webp'); }
+        #slide1 .bg-title, #slide1 .bg-name-left, #slide1 .bg-name-right { color: #d4af37 !important; }
+        
+        /* White background = burgundy text */
         #slide2 { background-image: url('Texture%20Background%20white.webp'); }
+        #slide2 .bg-title, #slide2 .bg-name-left, #slide2 .bg-name-right { color: #722F37 !important; }
+        
+        /* Burgundy without background = gold text */
         #slide3 { background-image: url('Texture%20Background%20Burgendy%20without.webp'); }
+        #slide3 .bg-title, #slide3 .bg-name-left, #slide3 .bg-name-right { color: #d4af37 !important; }
+        
+        /* White background = burgundy text */
         #slide4 { background-image: url('Texture%20Background%20white.webp'); }
+        #slide4 .bg-title, #slide4 .bg-name-left, #slide4 .bg-name-right { color: #722F37 !important; }
 
         .slide.active {
             opacity: 1;
@@ -368,7 +382,7 @@
         /* Progress indicator */
         .progress-container {
             position: fixed;
-            bottom: 30px;
+            bottom: 70px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -415,9 +429,10 @@
         /* Replay button */
         .replay-btn {
             position: fixed;
-            top: 30px;
-            right: 30px;
-            padding: 10px 20px;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 20px;
             background: transparent;
             border: 2px solid #d4af37;
             color: #d4af37;
@@ -788,9 +803,10 @@
             /* Background text mobile */
             .bg-title {
                 font-size: 4rem;
-                top: 70px;
+                top: 30px;
                 left: 50%;
                 transform: translateX(-50%);
+                text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
             }
 
             .bg-name-left,
@@ -799,6 +815,7 @@
                 top: auto;
                 bottom: 80px;
                 transform: none;
+                text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
             }
 
             .bg-name-left {
@@ -850,8 +867,11 @@
 
             /* Replay button mobile */
             .replay-btn {
-                top: 15px;
-                right: 15px;
+                bottom: 35px;
+                left: 50%;
+                transform: translateX(-50%);
+                top: auto;
+                right: auto;
                 padding: 8px 15px;
                 font-size: 0.6rem;
             }
@@ -885,13 +905,13 @@
 
             .bg-title {
                 font-size: 2.5rem;
-                top: 60px;
+                top: 20px;
             }
 
             .bg-name-left,
             .bg-name-right {
                 font-size: 1.2rem;
-                bottom: 60px;
+                bottom: 70px;
             }
 
             .bg-name-left {
@@ -994,8 +1014,8 @@
         <div class="slide" id="slide0">
             <div class="bg-text-container">
                 <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
-                <div class="bg-name-left">Mahlet</div>
-                <div class="bg-name-right">Lioul</div>
+                <div class="bg-name-left">Lioul</div>
+                <div class="bg-name-right">Mahlet</div>
             </div>
             <img src="front.webp" alt="Welcome" class="full-width-mobile">
         </div>
@@ -1004,8 +1024,8 @@
         <div class="slide" id="slide1">
             <div class="bg-text-container">
                 <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
-                <div class="bg-name-left">Mahlet</div>
-                <div class="bg-name-right">Lioul</div>
+                <div class="bg-name-left">Lioul</div>
+                <div class="bg-name-right">Mahlet</div>
             </div>
             <img src="main.webp" alt="Details" class="full-width-mobile">
         </div>
@@ -1014,8 +1034,8 @@
         <div class="slide" id="slide2">
             <div class="bg-text-container">
                 <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
-                <div class="bg-name-left">Mahlet</div>
-                <div class="bg-name-right">Lioul</div>
+                <div class="bg-name-left">Lioul</div>
+                <div class="bg-name-right">Mahlet</div>
             </div>
             <img src="b%20people.webp" alt="Agenda">
         </div>
@@ -1024,8 +1044,8 @@
         <div class="slide" id="slide3">
             <div class="bg-text-container">
                 <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
-                <div class="bg-name-left">Mahlet</div>
-                <div class="bg-name-right">Lioul</div>
+                <div class="bg-name-left">Lioul</div>
+                <div class="bg-name-right">Mahlet</div>
             </div>
             <img src="final%20front.webp" alt="Together" class="mobile-swap" data-mobile-src="ffinal%20front.webp" data-desktop-src="final%20front.webp">
         </div>
@@ -1034,8 +1054,8 @@
         <div class="slide" id="slide4">
             <div class="bg-text-container">
                 <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
-                <div class="bg-name-left">Mahlet</div>
-                <div class="bg-name-right">Lioul</div>
+                <div class="bg-name-left">Lioul</div>
+                <div class="bg-name-right">Mahlet</div>
             </div>
             <img src="front.webp" alt="Thank You">
             <!-- <div class="final-message" id="finalMessage">We can't wait to celebrate with you!</div> -->
