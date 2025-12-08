@@ -27,7 +27,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('Texture Background white.jpg');
+            background-image: url('Texture%20Background%20white.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -239,6 +239,11 @@
             z-index: 900;
             pointer-events: none;
             perspective: 1500px;
+            opacity: 0;
+        }
+
+        .door-container.visible {
+            opacity: 1;
         }
 
         .door-left, .door-right {
@@ -333,11 +338,11 @@
         }
 
         /* Individual slide backgrounds */
-        #slide0 { background-image: url('Texture Background white.jpg'); }
-        #slide1 { background-image: url('Texture Background Burgendy.jpg'); }
-        #slide2 { background-image: url('Texture Background white.jpg'); }
-        #slide3 { background-image: url('Texture Background Burgendy without.jpg'); }
-        #slide4 { background-image: url('Texture Background white.jpg'); }
+        #slide0 { background-image: url('Texture%20Background%20white.jpg'); }
+        #slide1 { background-image: url('Texture%20Background%20Burgendy.jpg'); }
+        #slide2 { background-image: url('Texture%20Background%20white.jpg'); }
+        #slide3 { background-image: url('Texture%20Background%20Burgendy%20without.jpg'); }
+        #slide4 { background-image: url('Texture%20Background%20white.jpg'); }
 
         .slide.active {
             opacity: 1;
@@ -1011,7 +1016,7 @@
                 <div class="bg-name-left">Mahlet</div>
                 <div class="bg-name-right">Lioul</div>
             </div>
-            <img src="b people.jpg" alt="Agenda">
+            <img src="b%20people.jpg" alt="Agenda">
         </div>
 
         <!-- Slide 4: Final Front (All Together) -->
@@ -1021,7 +1026,7 @@
                 <div class="bg-name-left">Mahlet</div>
                 <div class="bg-name-right">Lioul</div>
             </div>
-            <img src="final front.jpg" alt="Together" class="mobile-swap" data-mobile-src="ffinal front.jpg" data-desktop-src="final front.jpg">
+            <img src="final%20front.jpg" alt="Together" class="mobile-swap" data-mobile-src="ffinal%20front.jpg" data-desktop-src="final%20front.jpg">
         </div>
 
         <!-- Slide 5: Back to Front (Closing) -->
@@ -1051,6 +1056,7 @@
             applyTranslations(lang);
             document.getElementById('languageScreen').classList.add('hidden');
             document.getElementById('introScreen').classList.add('visible');
+            document.getElementById('doorContainer').classList.add('visible');
         }
 
         // Apply translations to all elements with data-en and data-am attributes
@@ -1198,6 +1204,7 @@
             document.getElementById('descriptionPage').classList.remove('visible');
             document.getElementById('slideshow').classList.remove('visible');
             document.getElementById('doorContainer').style.display = 'block';
+            document.getElementById('doorContainer').classList.remove('visible');
             document.getElementById('doorLeft').classList.remove('open');
             document.getElementById('doorRight').classList.remove('open');
             document.getElementById('replayBtn').classList.remove('visible');
