@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400&family=Noto+Serif+Ethiopic:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* ========== LANGUAGE SELECTOR ========== */
+        .language-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('Texture Background white.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+            transition: opacity 1s ease;
+        }
+
+        .language-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.3);
+        }
+
+        .language-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .language-content {
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease 0.3s forwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        .language-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 6rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .language-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            color: #333;
+            margin-bottom: 60px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+
+        .language-buttons {
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .lang-btn {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: 3px solid #d4af37;
+            color: #d4af37;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .lang-btn:hover {
+            background: #d4af37;
+            color: #fff;
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
+        }
+
+        .lang-btn-am {
+            font-family: 'Noto Serif Ethiopic', serif;
+            font-size: 1.2rem;
+            letter-spacing: 0;
+            font-weight: 500;
+        }
+
+        /* Amharic font styling */
+        .amharic {
+            font-family: 'Noto Serif Ethiopic', serif !important;
+        }
+
+        /* ========== INTRO SCREEN ========== */
+        .intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 1s ease;
+        }
+
+        .intro-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .intro-text {
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease 0.5s forwards;
+        }
+
+        .intro-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .intro-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .intro-names {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #d4af37;
+            margin: 30px 0;
+        }
+
+        .intro-and {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #fff;
+            margin: 10px 0;
+        }
+
+        .intro-date {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 4px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 40px;
+        }
+
+        .enter-btn {
+            margin-top: 50px;
+            padding: 15px 50px;
+            background: transparent;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.5s forwards;
+        }
+
+        .enter-btn:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== DOOR ANIMATION ========== */
+        .door-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 900;
+            pointer-events: none;
+            perspective: 1500px;
+        }
+
+        .door-left, .door-right {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+            transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: left center;
+            box-shadow: inset -20px 0 60px rgba(0,0,0,0.5);
+        }
+
+        .door-left {
+            left: 0;
+            transform-origin: left center;
+            border-right: 2px solid #d4af37;
+        }
+
+        .door-right {
+            right: 0;
+            transform-origin: right center;
+            border-left: 2px solid #d4af37;
+            box-shadow: inset 20px 0 60px rgba(0,0,0,0.5);
+        }
+
+        .door-left.open {
+            transform: rotateY(-105deg);
+        }
+
+        .door-right.open {
+            transform: rotateY(105deg);
+        }
+
+        .door-handle {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 60px;
+            background: linear-gradient(180deg, #d4af37, #b8960c, #d4af37);
+            border-radius: 3px;
+        }
+
+        .door-left .door-handle { right: 30px; }
+        .door-right .door-handle { left: 30px; }
+
+        .door-ornament {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: #d4af37;
+            opacity: 0.3;
+        }
+
+        /* ========== MAIN SLIDESHOW ========== */
+        .slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a0a;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .slideshow.visible {
+            opacity: 1;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+            padding: 20px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Individual slide backgrounds */
+        #slide0 { background-image: url('Texture Background white.jpg'); }
+        #slide1 { background-image: url('Texture Background Burgendy.jpg'); }
+        #slide2 { background-image: url('Texture Background white.jpg'); }
+        #slide3 { background-image: url('Texture Background Burgendy without.jpg'); }
+        #slide4 { background-image: url('Texture Background white.jpg'); }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .slide-label {
+            display: none;
+        }
+
+        .slide-description {
+            display: none;
+        }
+
+        /* Progress indicator */
+        .progress-container {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .progress-dot.active {
+            background: #d4af37;
+            transform: scale(1.3);
+        }
+
+        .progress-dot.completed {
+            background: rgba(212, 175, 55, 0.5);
+        }
+
+        /* Navigation hint */
+        .nav-hint {
+            position: fixed;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: #d4af37;
+            font-weight: bold;
+            letter-spacing: 2px;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .nav-hint:hover {
+            color: #fff;
+        }
+
+        /* Replay button */
+        .replay-btn {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0;
+        }
+
+        .replay-btn.visible {
+            opacity: 1;
+        }
+
+        .replay-btn:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+        }
+
+        /* Decorative elements */
+        .corner-ornament {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            z-index: 50;
+        }
+
+        .corner-ornament.top-left {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-ornament.top-right {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-ornament.bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-ornament.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* Description page after gate */
+        .description-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 850;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+        }
+
+        .description-page.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .description-content {
+            text-align: center;
+            padding: 40px;
+            max-width: 600px;
+        }
+
+        .description-ornament {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .description-couple {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .description-and {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: #fff;
+            margin: 10px 0;
+        }
+
+        .description-divider {
+            width: 150px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 30px auto;
+        }
+
+        .description-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 8px;
+        }
+
+        .description-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .description-time {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 25px;
+        }
+
+        .description-address {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: #fff;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .continue-btn {
+            margin-top: 30px;
+            padding: 15px 50px;
+            background: transparent;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .continue-btn:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+        }
+
+        /* Final message */
+        .final-message {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #d4af37;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 1s ease;
+            white-space: nowrap;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .final-message.visible {
+            opacity: 1;
+        }
+
+        /* Background text decoration */
+        .bg-text-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Great Vibes', cursive;
+            font-size: 15rem;
+            color: #d4af37;
+            white-space: nowrap;
+            text-align: center;
+            letter-spacing: 5px;
+        }
+
+        .bg-name-left {
+            position: absolute;
+            top: 50%;
+            left: 80px;
+            transform: translateY(-50%) rotate(-90deg);
+            transform-origin: left center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #d4af37;
+            white-space: nowrap;
+            letter-spacing: 3px;
+        }
+
+        .bg-name-right {
+            position: absolute;
+            top: 50%;
+            right: 80px;
+            transform: translateY(-50%) rotate(90deg);
+            transform-origin: right center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #d4af37;
+            white-space: nowrap;
+            letter-spacing: 3px;
+        }
+
+        .slide img {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========== MOBILE RESPONSIVE ========== */
+        @media screen and (max-width: 768px) {
+            /* Intro screen mobile */
+            .intro-subtitle {
+                font-size: 0.65rem;
+                letter-spacing: 3px;
+                padding: 0 20px;
+            }
+
+            .intro-title {
+                font-size: 2.5rem;
+            }
+
+            .intro-names {
+                font-size: 2rem;
+                margin: 15px 0;
+            }
+
+            .intro-and {
+                font-size: 1.8rem;
+            }
+
+            .intro-date {
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+                padding: 0 20px;
+            }
+
+            .enter-btn {
+                padding: 12px 30px;
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+            }
+
+            /* Door mobile */
+            .door-ornament {
+                font-size: 1.5rem;
+            }
+
+            .door-handle {
+                width: 10px;
+                height: 40px;
+            }
+
+            .door-left .door-handle { right: 20px; }
+            .door-right .door-handle { left: 20px; }
+
+            /* Language screen mobile */
+            .language-title {
+                font-size: 4rem;
+                padding: 0 20px;
+            }
+
+            .language-subtitle {
+                font-size: 0.65rem;
+                letter-spacing: 2px;
+                padding: 0 20px;
+                margin-bottom: 40px;
+            }
+
+            .language-buttons {
+                flex-direction: row;
+                gap: 30px;
+            }
+
+            .lang-btn {
+                width: 110px;
+                height: 110px;
+                font-size: 0.75rem;
+            }
+
+            .lang-btn-am {
+                font-size: 1rem;
+            }
+
+            /* Description page mobile */
+            .description-content {
+                padding: 30px 20px;
+            }
+
+            .description-couple {
+                font-size: 2.5rem;
+            }
+
+            .description-and {
+                font-size: 1.5rem;
+            }
+
+            .description-time {
+                font-size: 1.5rem;
+            }
+
+            .description-value {
+                font-size: 1.2rem;
+            }
+
+            .description-address {
+                font-size: 1.1rem;
+            }
+
+            .continue-btn {
+                padding: 12px 35px;
+                font-size: 0.7rem;
+            }
+
+            /* Slideshow mobile */
+            .slide {
+                padding: 10px;
+            }
+
+            .slide img {
+                max-width: 95%;
+                max-height: 75vh;
+            }
+
+            .slide img.full-width-mobile {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* Background text mobile */
+            .bg-title {
+                font-size: 4rem;
+                top: 70px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .bg-name-left,
+            .bg-name-right {
+                font-size: 1.5rem;
+                top: auto;
+                bottom: 80px;
+                transform: none;
+            }
+
+            .bg-name-left {
+                left: 30px;
+                right: auto;
+            }
+
+            .bg-name-right {
+                right: 30px;
+                left: auto;
+            }
+
+            /* Corner ornaments mobile */
+            .corner-ornament {
+                width: 50px;
+                height: 50px;
+            }
+
+            .corner-ornament.top-left,
+            .corner-ornament.bottom-left {
+                left: 10px;
+            }
+
+            .corner-ornament.top-right,
+            .corner-ornament.bottom-right {
+                right: 10px;
+            }
+
+            .corner-ornament.top-left,
+            .corner-ornament.top-right {
+                top: 10px;
+            }
+
+            .corner-ornament.bottom-left,
+            .corner-ornament.bottom-right {
+                bottom: 10px;
+            }
+
+            /* Progress dots mobile */
+            .progress-container {
+                bottom: 20px;
+                gap: 10px;
+            }
+
+            .progress-dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            /* Replay button mobile */
+            .replay-btn {
+                top: 15px;
+                right: 15px;
+                padding: 8px 15px;
+                font-size: 0.6rem;
+            }
+
+            /* Final message mobile */
+            .final-message {
+                font-size: 1.5rem;
+                top: 60px;
+            }
+
+            /* Nav hint mobile */
+            .nav-hint {
+                bottom: 50px;
+                font-size: 0.6rem;
+            }
+        }
+
+        /* Extra small screens */
+        @media screen and (max-width: 480px) {
+            .intro-title {
+                font-size: 2rem;
+            }
+
+            .intro-names {
+                font-size: 1.6rem;
+            }
+
+            .intro-and {
+                font-size: 1.5rem;
+            }
+
+            .bg-title {
+                font-size: 2.5rem;
+                top: 60px;
+            }
+
+            .bg-name-left,
+            .bg-name-right {
+                font-size: 1.2rem;
+                bottom: 60px;
+            }
+
+            .bg-name-left {
+                left: 20px;
+            }
+
+            .bg-name-right {
+                right: 20px;
+            }
+
+            .slide img {
+                max-width: 98%;
+                max-height: 70vh;
+            }
+
+            .final-message {
+                font-size: 1.2rem;
+                padding: 0 10px;
+                text-align: center;
+                white-space: normal;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Selection Screen -->
+    <div class="language-screen" id="languageScreen">
+        <div class="language-content">
+            <div class="language-title">Welcome</div>
+            <div class="language-title">እንኳን ደህና መጡ</div>
+            <div class="language-subtitle">Choose your language | ቋንቋ ይምረጡ</div>
+            <div class="language-buttons">
+                <button class="lang-btn" onclick="selectLanguage('en')">ENGLISH</button>
+                <button class="lang-btn lang-btn-am" onclick="selectLanguage('am')">አማርኛ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Intro Screen -->
+    <div class="intro-screen" id="introScreen">
+        <div class="intro-text">
+            <div class="intro-subtitle" data-en="You are cordially invited to" data-am="በአክብሮት ተጋብዘዋል ወደ">You are cordially invited to</div>
+            <div class="intro-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
+            <div class="intro-names">Lioul</div>
+            <div class="intro-and">&</div>
+            <div class="intro-names">Mahlet</div>
+            <div class="intro-date" data-en="Join us in celebrating our love" data-am="ፍቅራችንን ለማክበር ይቀላቀሉን">Join us in celebrating our love</div>
+            <button class="enter-btn" onclick="openDoors()" data-en="Open Invitation" data-am="ግብዣውን ይክፈቱ">Open Invitation</button>
+        </div>
+    </div>
+
+    <!-- Door Animation -->
+    <div class="door-container" id="doorContainer">
+        <div class="door-left" id="doorLeft">
+            <div class="door-handle"></div>
+            <div class="door-ornament">L</div>
+        </div>
+        <div class="door-right" id="doorRight">
+            <div class="door-handle"></div>
+            <div class="door-ornament">M</div>
+        </div>
+    </div>
+
+    <!-- Description Page (after gate opens) -->
+    <div class="description-page" id="descriptionPage">
+        <div class="description-content">
+            <div class="description-ornament">✦ ✦ ✦</div>
+            
+            <div class="description-couple">Lioul</div>
+            <div class="description-and">&</div>
+            <div class="description-couple">Mahlet</div>
+            
+            <div class="description-divider"></div>
+            
+            <div class="description-label" data-en="Date" data-am="ቀን">Date</div>
+            <div class="description-time" data-en="Saturday, January 15, 2025" data-am="ቅዳሜ፣ ጥር 6 ቀን 2017 ዓ.ም.">Saturday, January 15, 2025</div>
+            
+            <div class="description-label" data-en="Time" data-am="ሰዓት">Time</div>
+            <div class="description-value" data-en="4:00 PM" data-am="10:00 ሰዓት">4:00 PM</div>
+            
+            <div class="description-label" data-en="Venue" data-am="ቦታ">Venue</div>
+            <div class="description-address" data-en="Grand Ballroom<br>123 Wedding Avenue<br>Addis Ababa, Ethiopia" data-am="ግራንድ ቦልሩም<br>123 ዌዲንግ አቬኑ<br>አዲስ አበባ፣ ኢትዮጵያ">
+                Grand Ballroom<br>
+                123 Wedding Avenue<br>
+                Addis Ababa, Ethiopia
+            </div>
+            
+            <button class="continue-btn" onclick="continueToSlideshow()" data-en="View Invitation" data-am="ግብዣውን ይመልከቱ">View Invitation</button>
+        </div>
+    </div>
+
+    <!-- Main Slideshow -->
+    <div class="slideshow" id="slideshow">
+        <div class="corner-ornament top-left"></div>
+        <div class="corner-ornament top-right"></div>
+        <div class="corner-ornament bottom-left"></div>
+        <div class="corner-ornament bottom-right"></div>
+
+        <!-- Slide 1: Front (Welcome) -->
+        <div class="slide" id="slide0">
+            <div class="bg-text-container">
+                <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
+                <div class="bg-name-left">Mahlet</div>
+                <div class="bg-name-right">Lioul</div>
+            </div>
+            <img src="front.jpg" alt="Welcome" class="full-width-mobile">
+        </div>
+
+        <!-- Slide 2: Main (Details) -->
+        <div class="slide" id="slide1">
+            <div class="bg-text-container">
+                <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
+                <div class="bg-name-left">Mahlet</div>
+                <div class="bg-name-right">Lioul</div>
+            </div>
+            <img src="main.jpg" alt="Details" class="full-width-mobile">
+        </div>
+
+        <!-- Slide 3: B People (Agenda) -->
+        <div class="slide" id="slide2">
+            <div class="bg-text-container">
+                <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
+                <div class="bg-name-left">Mahlet</div>
+                <div class="bg-name-right">Lioul</div>
+            </div>
+            <img src="b people.jpg" alt="Agenda">
+        </div>
+
+        <!-- Slide 4: Final Front (All Together) -->
+        <div class="slide" id="slide3">
+            <div class="bg-text-container">
+                <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
+                <div class="bg-name-left">Mahlet</div>
+                <div class="bg-name-right">Lioul</div>
+            </div>
+            <img src="final front.jpg" alt="Together" class="mobile-swap" data-mobile-src="ffinal front.jpg" data-desktop-src="final front.jpg">
+        </div>
+
+        <!-- Slide 5: Back to Front (Closing) -->
+        <div class="slide" id="slide4">
+            <div class="bg-text-container">
+                <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
+                <div class="bg-name-left">Mahlet</div>
+                <div class="bg-name-right">Lioul</div>
+            </div>
+            <img src="front.jpg" alt="Thank You">
+            <!-- <div class="final-message" id="finalMessage">We can't wait to celebrate with you!</div> -->
+            <div class="slide-label">Thank You</div>
+            <div class="slide-description">See You There</div>
+        </div>
+
+        <div class="progress-container" id="progressDots"></div>
+        <!-- <div class="nav-hint">Click anywhere or use arrow keys to continue</div> -->
+        <button class="replay-btn" id="replayBtn" onclick="replay()" data-en="↻ Replay" data-am="↻ እንደገና">↻ Replay</button>
+    </div>
+
+    <script>
+        let currentLanguage = 'en';
+
+        // Language selection function
+        function selectLanguage(lang) {
+            currentLanguage = lang;
+            applyTranslations(lang);
+            document.getElementById('languageScreen').classList.add('hidden');
+        }
+
+        // Apply translations to all elements with data-en and data-am attributes
+        function applyTranslations(lang) {
+            const elements = document.querySelectorAll('[data-en][data-am]');
+            elements.forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (text) {
+                    if (el.tagName === 'BUTTON' || el.tagName === 'INPUT') {
+                        el.innerHTML = text;
+                    } else {
+                        el.innerHTML = text;
+                    }
+                }
+                
+                // Add amharic class for proper font styling
+                if (lang === 'am') {
+                    el.classList.add('amharic');
+                } else {
+                    el.classList.remove('amharic');
+                }
+            });
+            
+            // Make replay button always visible after language selection
+            document.getElementById('replayBtn').style.opacity = '1';
+        }
+
+        const slides = [
+            { id: 'slide0', label: 'Welcome' },
+            { id: 'slide1', label: 'Details' },
+            { id: 'slide2', label: 'Agenda' },
+            { id: 'slide3', label: 'Together' },
+            { id: 'slide4', label: 'Thank You' }
+        ];
+
+        let currentSlide = 0;
+        let slideshowStarted = false;
+        let autoAdvance = null;
+
+        // Create progress dots
+        const progressContainer = document.getElementById('progressDots');
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'progress-dot';
+            dot.onclick = (e) => {
+                e.stopPropagation();
+                goToSlide(i);
+            };
+            progressContainer.appendChild(dot);
+        });
+
+        function openDoors() {
+            // Hide intro screen
+            document.getElementById('introScreen').classList.add('hidden');
+            
+            // Open doors with delay
+            setTimeout(() => {
+                document.getElementById('doorLeft').classList.add('open');
+                document.getElementById('doorRight').classList.add('open');
+            }, 1000);
+
+            // Show description page after doors fully open (2s animation + buffer)
+            setTimeout(() => {
+                document.getElementById('descriptionPage').classList.add('visible');
+            }, 2800);
+
+            // Hide doors completely after animation
+            setTimeout(() => {
+                document.getElementById('doorContainer').style.display = 'none';
+            }, 3500);
+        }
+
+        function continueToSlideshow() {
+            // Hide description page
+            document.getElementById('descriptionPage').classList.remove('visible');
+            
+            // Show slideshow
+            setTimeout(() => {
+                document.getElementById('slideshow').classList.add('visible');
+                startSlideshow();
+            }, 500);
+        }
+
+        function startSlideshow() {
+            slideshowStarted = true;
+            showSlide(0);
+            
+            // Auto-advance slides
+            autoAdvance = setInterval(() => {
+                if (currentSlide < slides.length - 1) {
+                    nextSlide();
+                } else {
+                    clearInterval(autoAdvance);
+                    document.getElementById('replayBtn').classList.add('visible');
+                    document.getElementById('finalMessage').classList.add('visible');
+                }
+            }, 4000);
+        }
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach((slide, i) => {
+                document.getElementById(slide.id).classList.remove('active');
+            });
+
+            // Show current slide
+            document.getElementById(slides[index].id).classList.add('active');
+
+            // Update progress dots
+            document.querySelectorAll('.progress-dot').forEach((dot, i) => {
+                dot.classList.remove('active', 'completed');
+                if (i === index) {
+                    dot.classList.add('active');
+                } else if (i < index) {
+                    dot.classList.add('completed');
+                }
+            });
+
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function goToSlide(index) {
+            clearInterval(autoAdvance);
+            showSlide(index);
+            document.getElementById('replayBtn').classList.add('visible');
+        }
+
+        function replay() {
+            // Reset everything including language screen
+            document.getElementById('languageScreen').classList.remove('hidden');
+            document.getElementById('introScreen').classList.remove('hidden');
+            document.getElementById('descriptionPage').classList.remove('visible');
+            document.getElementById('slideshow').classList.remove('visible');
+            document.getElementById('doorContainer').style.display = 'block';
+            document.getElementById('doorLeft').classList.remove('open');
+            document.getElementById('doorRight').classList.remove('open');
+            document.getElementById('replayBtn').classList.remove('visible');
+            document.getElementById('replayBtn').style.opacity = '0';
+            document.getElementById('finalMessage').classList.remove('visible');
+            currentSlide = 0;
+            slideshowStarted = false;
+            clearInterval(autoAdvance);
+            
+            // Reset slides
+            slides.forEach(slide => {
+                document.getElementById(slide.id).classList.remove('active');
+            });
+        }
+
+        // Click to advance
+        document.getElementById('slideshow').addEventListener('click', (e) => {
+            if (e.target.closest('.progress-dot') || e.target.closest('.replay-btn')) return;
+            clearInterval(autoAdvance);
+            if (currentSlide < slides.length - 1) {
+                nextSlide();
+            }
+            document.getElementById('replayBtn').classList.add('visible');
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!slideshowStarted) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    openDoors();
+                }
+                return;
+            }
+
+            clearInterval(autoAdvance);
+            document.getElementById('replayBtn').classList.add('visible');
+
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'r' || e.key === 'R') {
+                replay();
+            }
+        });
+
+        // Mobile image swap function
+        function handleMobileImageSwap() {
+            const isMobile = window.innerWidth <= 768;
+            const swapImages = document.querySelectorAll('.mobile-swap');
+            
+            swapImages.forEach(img => {
+                if (isMobile) {
+                    img.src = img.dataset.mobileSrc;
+                } else {
+                    img.src = img.dataset.desktopSrc;
+                }
+            });
+        }
+
+        // Run on load and resize
+        handleMobileImageSwap();
+        window.addEventListener('resize', handleMobileImageSwap);
+    </script>
+</body>
+</html>
