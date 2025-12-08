@@ -1,0 +1,59 @@
+# Netlify configuration file
+
+[build]
+  publish = "."
+
+# Headers for better caching and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+
+# Cache static assets
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.jpeg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Redirects - handle spaces in filenames
+[[redirects]]
+  from = "/Texture%20Background%20white.jpg"
+  to = "/Texture Background white.jpg"
+  status = 200
+
+[[redirects]]
+  from = "/Texture%20Background%20Burgendy.jpg"
+  to = "/Texture Background Burgendy.jpg"
+  status = 200
+
+[[redirects]]
+  from = "/Texture%20Background%20Burgendy%20without.jpg"
+  to = "/Texture Background Burgendy without.jpg"
+  status = 200
+
+[[redirects]]
+  from = "/b%20people.jpg"
+  to = "/b people.jpg"
+  status = 200
+
+[[redirects]]
+  from = "/final%20front.jpg"
+  to = "/final front.jpg"
+  status = 200
+
+[[redirects]]
+  from = "/ffinal%20front.jpg"
+  to = "/ffinal front.jpg"
+  status = 200
