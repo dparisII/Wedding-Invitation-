@@ -137,6 +137,13 @@
             justify-content: center;
             z-index: 1000;
             transition: opacity 1s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .intro-screen.visible {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .intro-screen.hidden {
@@ -476,11 +483,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             z-index: 850;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.8s ease;
+            overflow-y: auto;
+            padding: 20px 0;
         }
 
         .description-page.visible {
@@ -490,8 +499,9 @@
 
         .description-content {
             text-align: center;
-            padding: 40px;
+            padding: 30px 20px;
             max-width: 600px;
+            margin: auto;
         }
 
         .description-ornament {
@@ -1040,6 +1050,7 @@
             currentLanguage = lang;
             applyTranslations(lang);
             document.getElementById('languageScreen').classList.add('hidden');
+            document.getElementById('introScreen').classList.add('visible');
         }
 
         // Apply translations to all elements with data-en and data-am attributes
@@ -1182,6 +1193,7 @@
         function replay() {
             // Reset everything including language screen
             document.getElementById('languageScreen').classList.remove('hidden');
+            document.getElementById('introScreen').classList.remove('visible');
             document.getElementById('introScreen').classList.remove('hidden');
             document.getElementById('descriptionPage').classList.remove('visible');
             document.getElementById('slideshow').classList.remove('visible');
