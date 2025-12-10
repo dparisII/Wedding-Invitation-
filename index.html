@@ -27,7 +27,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('Texture%20Background%20white.webp');
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            /* background-image: url('Texture%20Background%20white.webp'); */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -768,9 +769,19 @@
 
         .location-venue {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
             color: #d4af37;
             margin-bottom: 10px;
+        }
+
+        .location-main {
+            display: block;
+            font-size: 1.8rem;
+        }
+
+        .location-area {
+            display: block;
+            font-size: 1rem;
+            margin-top: 2px;
         }
 
         .location-text {
@@ -1110,11 +1121,11 @@
         <div class="intro-text">
             <div class="intro-subtitle" data-en="You are cordially <br> <br> invited to" data-am="በአክብሮት ተጋብዘዋል ወደ">You are cordially <br><br>  invited to</div>
             <div class="intro-title" data-en="THE WEDDING OF" data-am="የሠርግ ሥነ ሥርዓት">THE WEDDING OF</div>
-            <div class="intro-names" data-en="Mr LIOUL ASFAW" data-am="አቶ ልዑል አሰፋው">Mr LIOUL ASFAW</div>
-            <div class="intro-and">&</div>
-            <div class="intro-names" data-en="Dr. MAHLET MITKU" data-am="ዶ/ር ማህሌት ምትኩ">Dr. MAHLET MITKU</div>
-            <div class="intro-date" data-en="Join us in celebrating our love" data-am="ፍቅራችንን ለማክበር ይቀላቀሉን">Join us in celebrating our love</div>
-            <button class="enter-btn" onclick="openDoors()" data-en="Open Invitation" data-am="ግብዣውን ይክፈቱ">Open Invitation</button>
+            <div class="intro-names" data-en="Mr. LIOUL ASFAW" data-am="አቶ ልዑል አሰፋው">Mr LIOUL ASFAW</div>
+            <div class="intro-and"data-en="&" data-am="እና">&</div>
+            <div class="intro-names" data-en="Dr. MAHLET MITKU" data-am="ዶ/ር ማህሌት  ምትኩ">Dr. MAHLET MITKU</div>
+            <!-- <div class="intro-date" data-en="Join us in celebrating our love" data-am="ፍቅራችንን ለማክበር ይቀላቀሉን">Join us in celebrating our love</div> -->
+            <button class="enter-btn" onclick="openDoors()" data-en="Open Invitation" data-am="ጥሪዎን ይመልክቱ">Open Invitation</button>
         </div>
     </div>
 
@@ -1137,7 +1148,7 @@
             
             <div class="description-couple" data-en="Lioul" data-am="ልዑል">Lioul</div>
             <div class="description-and">&</div>
-            <div class="description-couple" data-en="Mahlet" data-am="ማህሌት">Mahlet</div>
+            <div class="description-couple" data-en="Mahlet" data-am="ማህሌት ">Mahlet</div>
             
             <div class="description-divider"></div>
             
@@ -1154,14 +1165,14 @@
                 Addis Ababa, Ethiopia
             </div>
             
-            <button class="continue-btn" onclick="continueToSlideshow()" data-en="View Invitation" data-am="ግብዣውን ይመልከቱ">View Invitation</button>
+            <button class="continue-btn" onclick="continueToSlideshow()" data-en="View Invitation" data-am="ጥሪዎን ይመልክቱ">View Invitation</button>
         </div>
     </div>
 
     <!-- Main Slideshow -->
     <div class="slideshow" id="slideshow">
         <!-- Static background title - PC only -->
-        <div class="bg-title" id="coupleNames" style="font-size: 10rem; top: 58%;" data-en="Lioul &amp; Mahlet" data-am="ሊዩል &amp; ማህሌት">Lioul &amp; Mahlet</div>
+        <div class="bg-title" id="coupleNames" style="font-size: 10rem; top: 58%;" data-en="Lioul &amp; Mahlet" data-am="ልዑል &amp; ማህሌት ">Lioul &amp; Mahlet</div>
         <!-- Mobile only title -->
         <div class="mobile-title">THE WEDDING OF</div>
         
@@ -1175,8 +1186,8 @@
             <img src="front%20en.webp" alt="Welcome" class="bg-image bg-image-en full-width-mobile">
             <img src="front.webp" alt="Welcome Amharic" class="bg-image bg-image-am full-width-mobile">
             <div class="bg-names-container">
-                <div class="bg-name-left">Lioul</div>
-                <div class="bg-name-right">Mahlet</div>
+                <div class="bg-name-left" data-en="Lioul" data-am="ልዑል">Lioul</div>
+                <div class="bg-name-right" data-en="Mahlet" data-am="ማህሌት ">Mahlet</div>
             </div>
         </div>
 
@@ -1185,8 +1196,8 @@
             <img src="main%20en.webp" alt="Details" class="bg-image bg-image-en full-width-mobile">
             <img src="main.webp" alt="Details Amharic" class="bg-image bg-image-am full-width-mobile">
             <div class="bg-names-container">
-                <div class="bg-name-left">Lioul</div>
-                <div class="bg-name-right">Mahlet</div>
+                <div class="bg-name-left" data-en="Lioul" data-am="ልዑል">Lioul</div>
+                <div class="bg-name-right" data-en="Mahlet" data-am="ማህሌት ">Mahlet</div>
             </div>
         </div>
 
@@ -1195,8 +1206,8 @@
             <img src="b%20people%20en.webp" alt="Agenda" class="bg-image bg-image-en">
             <img src="b%20people.webp" alt="Agenda Amharic" class="bg-image bg-image-am">
             <div class="bg-names-container">
-                <div class="bg-name-left">Lioul</div>
-                <div class="bg-name-right">Mahlet</div>
+                <div class="bg-name-left" data-en="Lioul" data-am="ልዑል">Lioul</div>
+                <div class="bg-name-right" data-en="Mahlet" data-am="ማህሌት ">Mahlet</div>
             </div>
         </div>
 
@@ -1205,8 +1216,8 @@
             <img src="final%20front%20en.webp" alt="Together" class="bg-image bg-image-en mobile-swap" data-mobile-src="ffinal%20front%20en.webp" data-desktop-src="final%20front%20en.webp">
             <img src="final%20front.webp" alt="Together Amharic" class="bg-image bg-image-am mobile-swap" data-mobile-src="ffinal%20front.webp" data-desktop-src="final%20front.webp">
             <div class="bg-names-container">
-                <div class="bg-name-left">Lioul</div>
-                <div class="bg-name-right">Mahlet</div>
+                <div class="bg-name-left" data-en="Lioul" data-am="ልዑል">Lioul</div>
+                <div class="bg-name-right" data-en="Mahlet" data-am="ማህሌት ">Mahlet</div>
             </div>
         </div>
 
@@ -1220,9 +1231,10 @@
                 <!-- Groom's House -->
                 <div class="location-item">
                     <div class="location-venue"
-                         data-en="Groom's House - Bole Rwanda area"
-                         data-am="የሙሽራው ቤት - ቦሌ ሩዋንዳ አካባቢ">
-                        Groom's House - Bole Rwanda area
+                         data-en="<span class='location-main'>Groom's House</span><span class='location-area'>Bole Rwanda area</span>"
+                         data-am="<span class='location-main'>የሙሽራው ቤት</span><span class='location-area'>ቦሌ ሩዋንዳ አካባቢ</span>">
+                        <span class="location-main">Groom's House</span>
+                        <span class="location-area">Bole Rwanda area</span>
                     </div>
                     <a class="location-link"
                        href="https://maps.app.goo.gl/sx6ZANJP6u55DYsd7?g_st=ac"
@@ -1233,9 +1245,10 @@
                 <!-- Bride's House -->
                 <div class="location-item">
                     <div class="location-venue"
-                         data-en="Bride's House - Ayer Tena area"
-                         data-am="የሙሽራዋ ቤት - አየር ጠና አካባቢ">
-                        Bride's House - Ayer Tena area
+                         data-en="<span class='location-main'>Bride's House</span><span class='location-area'>Ayer Tena area</span>"
+                         data-am="<span class='location-main'>የሙሽራዋ ቤት</span><span class='location-area'>አየር ጠና አካባቢ</span>">
+                        <span class="location-main">Bride's House</span>
+                        <span class="location-area">Ayer Tena area</span>
                     </div>
                     <a class="location-link"
                        href="https://maps.app.goo.gl/BfXc617f4z92b5Gw9?g_st=ac"
@@ -1246,9 +1259,10 @@
                 <!-- Reception / Kokeb Hall -->
                 <div class="location-item">
                     <div class="location-venue"
-                         data-en="Kokeb Hall - Megenagna 24 area"
-                         data-am="ኮከብ አዳራሸ - መገናኛ 24 አካባቢ">
-                        Kokeb Hall - Megenagna 24 area
+                         data-en="<span class='location-main'>Kokeb Hall</span><span class='location-area'>Megenagna 24 area</span>"
+                         data-am="<span class='location-main'>ኮከብ አዳራሸ</span><span class='location-area'>መገናኛ 24 አካባቢ</span>">
+                        <span class="location-main">Kokeb Hall</span>
+                        <span class="location-area">Megenagna 24 area</span>
                     </div>
                     <a class="location-link"
                        href="https://maps.app.goo.gl/hDFHNVt72vNhMwvF7?g_st=ac"
