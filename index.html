@@ -168,15 +168,18 @@
         }
 
         .intro-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
+            /* font-family: 'Great Vibes', cursive; Cormorant Garamond */
+            font-family: 'Cormorant Garamond', cursive;
+            /* font-family: 'Cormorant Garamond'; */
+            font-size: 5rem;
+            /* width: 20px; */
             color: #fff;
             margin-bottom: 10px;
         }
 
         .intro-names {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 300;
             letter-spacing: 4px;
             color: #d4af37;
@@ -316,6 +319,7 @@
             background: #0a0a0a;
             opacity: 0;
             transition: opacity 1s ease;
+            isolation: isolate;
         }
 
         .slideshow.visible {
@@ -329,38 +333,58 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             opacity: 0;
             transition: opacity 1s ease;
             padding: 20px;
+            padding-top: 30px;
+        }
+
+        /* Slide background as pseudo-element (behind marquee) */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            z-index: 1;
+        }
+
+        .slide.active {
+            z-index: 50;
         }
 
         /* Individual slide backgrounds and text colors */
         /* White background = burgundy text */
-        #slide0 { background-image: url('Texture%20Background%20white.webp'); }
-        #slide0 .bg-title, #slide0 .bg-name-left, #slide0 .bg-name-right { color: #722F37 !important; }
+        #slide0::before { background-image: url('Texture%20Background%20white.webp'); }
+        #slide0 .bg-name-left, #slide0 .bg-name-right { color: #722F37 !important; }
         
         /* Burgundy background = gold text */
-        #slide1 { background-image: url('Texture%20Background%20Burgendy.webp'); }
-        #slide1 .bg-title, #slide1 .bg-name-left, #slide1 .bg-name-right { color: #d4af37 !important; }
+        #slide1::before { background-image: url('Texture%20Background%20Burgendy.webp'); }
+        #slide1 .bg-name-left, #slide1 .bg-name-right { color: #d4af37 !important; }
         
         /* White background = burgundy text */
-        #slide2 { background-image: url('Texture%20Background%20white.webp'); }
-        #slide2 .bg-title, #slide2 .bg-name-left, #slide2 .bg-name-right { color: #722F37 !important; }
+        #slide2::before { background-image: url('Texture%20Background%20white.webp'); }
+        #slide2 .bg-name-left, #slide2 .bg-name-right { color: #722F37 !important; }
         
         /* Burgundy without background = gold text */
-        #slide3 { background-image: url('Texture%20Background%20Burgendy%20without.webp'); }
-        #slide3 .bg-title, #slide3 .bg-name-left, #slide3 .bg-name-right { color: #d4af37 !important; }
+        #slide3::before { background-image: url('Texture%20Background%20Burgendy%20without.webp'); }
+        #slide3 .bg-name-left, #slide3 .bg-name-right { color: #d4af37 !important; }
         
         /* White background = burgundy text */
-        #slide4 { background-image: url('Texture%20Background%20white.webp'); }
-        #slide4 .bg-title, #slide4 .bg-name-left, #slide4 .bg-name-right { color: #722F37 !important; }
+        #slide4::before { background-image: url('Texture%20Background%20white.webp'); }
+        #slide4 .bg-name-left, #slide4 .bg-name-right { color: #722F37 !important; }
 
         .slide.active {
             opacity: 1;
+        }
+
+        .slide.active img {
+            z-index: 10;
         }
 
         .slide img {
@@ -624,61 +648,156 @@
             opacity: 1;
         }
 
-        /* Background text decoration */
-        .bg-text-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-
+        /* Background text decoration - static title on desktop */
         .bg-title {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Great Vibes', cursive;
-            font-size: 15rem;
-            color: #d4af37;
-            white-space: nowrap;
+            font-size: 9rem;
+            color: #722F37;
             text-align: center;
-            letter-spacing: 5px;
-        }
-
-        .bg-name-left {
-            position: absolute;
-            top: 50%;
-            left: 80px;
-            transform: translateY(-50%) rotate(-90deg);
-            transform-origin: left center;
-            font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
-            color: #d4af37 !important;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            z-index: 2;
+            pointer-events: none;
+            line-height: 1.1;
             white-space: nowrap;
-            letter-spacing: 3px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            width: 100%;
         }
 
+        /* Mobile title - hidden on desktop */
+        .mobile-title {
+            display: none;
+        }
+
+        .bg-names-container {
+            position: absolute;
+            bottom: 15%;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-name-left,
         .bg-name-right {
-            position: absolute;
-            top: 50%;
-            right: 80px;
-            transform: translateY(-50%) rotate(90deg);
-            transform-origin: right center;
             font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
+            font-size: 4rem;
             color: #d4af37 !important;
             white-space: nowrap;
-            letter-spacing: 3px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            letter-spacing: 2px;
+            opacity: 0.3;
         }
 
+        /* Desktop image styles */
         .slide img {
             position: relative;
-            z-index: 1;
+            z-index: 100;
+            max-height: 75vh;
+            margin-top: 50px;
+        }
+
+        /* Language-specific slideshow images */
+        .bg-image {
+            display: none;
+        }
+
+        body[data-lang="en"] .bg-image-en {
+            display: block;
+        }
+
+        body[data-lang="am"] .bg-image-am {
+            display: block;
+        }
+
+        /* Location page content on last slide */
+        .location-card {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 90%;
+            max-width: 420px;
+            padding: 20px 30px;
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 10px;
+            z-index: 110;
+        }
+
+        /* Full-screen layout for locations slide */
+        #slide4 .location-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transform: none;
+            margin: 0;
+            width: 100%;
+            max-width: none;
+            padding: 40px 24px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* center the locations list vertically */
+            background: rgba(10, 10, 10, 0.9); /* darker overlay to cover entire slide */
+            border-radius: 0;
+            border: none;
+            overflow-y: auto;
+        }
+
+        .location-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 10px;
+        }
+
+        .location-venue {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .location-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: #ffffff;
+        }
+
+        .location-item {
+            margin-top: 20px;
+        }
+
+        .location-link {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 16px;
+            border: 1px solid #d4af37;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #d4af37;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .location-link:hover {
+            background: #d4af37;
+            color: #0a0a0a;
         }
 
         /* ========== MOBILE RESPONSIVE ========== */
@@ -695,7 +814,7 @@
             }
 
             .intro-names {
-                font-size: 2rem;
+                font-size: 1.4rem;
                 margin: 15px 0;
             }
 
@@ -794,41 +913,110 @@
             .slide img {
                 max-width: 95%;
                 max-height: 75vh;
+                margin-top: 500px;            
             }
 
             .slide img.full-width-mobile {
-                width: 100%;
+                /* width: 100%;
                 max-width: 100%;
-                height: auto;
+                height: auto; */
+                margin-top: 150px;            
             }
 
-            /* Background text mobile */
+            /* Mobile - hide the scrolling marquee completely */
             .bg-title {
-                font-size: 4rem;
-                top: 30px;
+                display: none;
+            }
+
+            /* Mobile - show THE WEDDING OF at top */
+            .mobile-title {
+                display: block;
+                position: fixed;
+                top: 10px;
                 left: 50%;
                 transform: translateX(-50%);
-                text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+                font-family: 'Cormorant Garamond', cursive;
+                font-size: 1rem;
+                color: #d4af37;
+                letter-spacing: 2px;
+                opacity: 1;
+                z-index: 50;
+                pointer-events: none;
+                white-space: nowrap;
+            }
+
+            /* Locations card mobile - ensure full height on slide4 */
+            #slide4 .location-card {
+                max-height: 100vh;
+                overflow-y: auto;
+            }
+
+            /* Mobile image styles */
+            .slide img {
+                margin-top: 50px;
+            }
+
+            /* #slide3 .bg-image {
+                margin-top: 190px; adjust to your preferred spacing
+            } */
+
+            /* English image on slide 2 */
+            #slide2 .bg-image-en {
+            margin-top: 93px;  /* set English margin */
+            }
+
+            /* English image on slide 3 */
+            #slide3 .bg-image-en {
+            margin-top: 194px;  /* set English margin */
+            }
+
+            /* Amharic image on slide 1 */
+            #slide1 .bg-image-am {
+            margin-top: 150px;  /* set Amharic margin (example) */
+            }
+
+            /* Amharic image on slide 2 */
+            #slide2 .bg-image-am {
+            margin-top: 38px;  /* set Amharic margin (example) */
+            }
+
+            /* Amharic image on slide 3 */
+            #slide3 .bg-image-am {
+            margin-top: 90px;  /* set Amharic margin (example) */
+            }
+
+            /* Amharic image on slide 4 */
+            #slide4 .bg-image-am {
+            margin-top: 38px;  /* set Amharic margin (example) */
+            }
+
+
+            /* body[data-lang="am"] #slide1 .bg-image-am {
+                margin-top: 70px;
+            } */
+
+            .bg-names-container {
+                position: relative;
+                bottom: auto;
+                max-width: 100%;
+                padding: 0 30px;
+                margin-top: 10px;
+                z-index: 5;
             }
 
             .bg-name-left,
             .bg-name-right {
                 font-size: 1.5rem;
-                top: auto;
-                bottom: 80px;
-                transform: none;
-                color: #d4af37 !important;
-                text-shadow: 0 0 8px rgba(0,0,0,0.9), 1px 1px 3px rgba(0,0,0,0.8);
+                opacity: 1;
             }
 
-            .bg-name-left {
-                left: 30px;
-                right: auto;
+            /* Fine-tune vertical alignment for Amharic main invitation image */
+            /* body[data-lang="am"] #slide1 .bg-image-am {
+                margin-top: 70px; */
             }
 
-            .bg-name-right {
-                right: 30px;
-                left: auto;
+            .slide img {
+                max-height: 72vh;
             }
 
             /* Corner ornaments mobile */
@@ -899,7 +1087,7 @@
             }
 
             .intro-names {
-                font-size: 1.6rem;
+                font-size: 1.4rem;
             }
 
             .intro-and {
@@ -907,29 +1095,23 @@
             }
 
             .bg-title {
-                font-size: 2.5rem;
-                top: 20px;
+                font-size: 1.8rem;
+                margin-bottom: 5px;
+            }
+
+            .bg-names-container {
+                padding: 0 15px;
+                margin-top: 5px;
             }
 
             .bg-name-left,
             .bg-name-right {
                 font-size: 1.2rem;
-                bottom: 70px;
-                color: #d4af37 !important;
-                text-shadow: 0 0 8px rgba(0,0,0,0.9), 1px 1px 3px rgba(0,0,0,0.8);
-            }
-
-            .bg-name-left {
-                left: 20px;
-            }
-
-            .bg-name-right {
-                right: 20px;
             }
 
             .slide img {
                 max-width: 98%;
-                max-height: 70vh;
+                max-height: 68vh;
             }
 
             .final-message {
@@ -941,7 +1123,7 @@
         }
     </style>
 </head>
-<body>
+<body data-lang="en">
     <!-- Language Selection Screen -->
     <div class="language-screen" id="languageScreen">
         <div class="language-content">
@@ -958,11 +1140,11 @@
     <!-- Intro Screen -->
     <div class="intro-screen" id="introScreen">
         <div class="intro-text">
-            <div class="intro-subtitle" data-en="You are cordially invited to" data-am="በአክብሮት ተጋብዘዋል ወደ">You are cordially invited to</div>
-            <div class="intro-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
-            <div class="intro-names">Lioul</div>
+            <div class="intro-subtitle" data-en="You are cordially <br> <br> invited to" data-am="በአክብሮት ተጋብዘዋል ወደ">You are cordially <br><br>  invited to</div>
+            <div class="intro-title" data-en="THE WEDDING OF" data-am="የሠርግ ሥነ ሥርዓት">THE WEDDING OF</div>
+            <div class="intro-names" data-en="Mr LIOUL ASFAW" data-am="አቶ ልዑል አሰፋው">Mr LIOUL ASFAW</div>
             <div class="intro-and">&</div>
-            <div class="intro-names">Mahlet</div>
+            <div class="intro-names" data-en="Dr. MAHLET MITKU" data-am="ዶ/ር ማህሌት ምትኩ">Dr. MAHLET MITKU</div>
             <div class="intro-date" data-en="Join us in celebrating our love" data-am="ፍቅራችንን ለማክበር ይቀላቀሉን">Join us in celebrating our love</div>
             <button class="enter-btn" onclick="openDoors()" data-en="Open Invitation" data-am="ግብዣውን ይክፈቱ">Open Invitation</button>
         </div>
@@ -972,11 +1154,11 @@
     <div class="door-container" id="doorContainer">
         <div class="door-left" id="doorLeft">
             <div class="door-handle"></div>
-            <div class="door-ornament">L</div>
+            <div class="door-ornament" data-en="L" data-am="ል">L</div>
         </div>
         <div class="door-right" id="doorRight">
             <div class="door-handle"></div>
-            <div class="door-ornament">M</div>
+            <div class="door-ornament" data-en="M" data-am="ማ">M</div>
         </div>
     </div>
 
@@ -985,22 +1167,22 @@
         <div class="description-content">
             <div class="description-ornament">✦ ✦ ✦</div>
             
-            <div class="description-couple">Lioul</div>
+            <div class="description-couple" data-en="Lioul" data-am="ልዑል">Lioul</div>
             <div class="description-and">&</div>
-            <div class="description-couple">Mahlet</div>
+            <div class="description-couple" data-en="Mahlet" data-am="ማህሌት">Mahlet</div>
             
             <div class="description-divider"></div>
             
             <div class="description-label" data-en="Date" data-am="ቀን">Date</div>
-            <div class="description-time" data-en="Saturday, January 15, 2025" data-am="ቅዳሜ፣ ጥር 6 ቀን 2017 ዓ.ም.">Saturday, January 15, 2025</div>
+            <div class="description-time" data-en="Saturday, January 10, 2026" data-am="ቅዳሜ፣ ጥር 2 ቀን 2017 ዓ.ም.">Saturday, January 10, 2026</div>
             
             <div class="description-label" data-en="Time" data-am="ሰዓት">Time</div>
-            <div class="description-value" data-en="4:00 PM" data-am="10:00 ሰዓት">4:00 PM</div>
+            <div class="description-value" data-en="06:00 PM" data-am="ከምሽቱ 12:00 ሰዓት">06:00 PM</div>
             
             <div class="description-label" data-en="Venue" data-am="ቦታ">Venue</div>
-            <div class="description-address" data-en="Grand Ballroom<br>123 Wedding Avenue<br>Addis Ababa, Ethiopia" data-am="ግራንድ ቦልሩም<br>123 ዌዲንግ አቬኑ<br>አዲስ አበባ፣ ኢትዮጵያ">
-                Grand Ballroom<br>
-                123 Wedding Avenue<br>
+            <div class="description-address" data-en="Kokeb Hall<br>located around Megenagna 24<br>Addis Ababa, Ethiopia" data-am=" መገናኛ 24 በሚገኘው<br>ኮከብ አዳራሸ<br>አዲስ አበባ፣ ኢትዮጵያ">
+                Kokeb Hall<br>
+                located around Megenagna 24<br>
                 Addis Ababa, Ethiopia
             </div>
             
@@ -1010,6 +1192,11 @@
 
     <!-- Main Slideshow -->
     <div class="slideshow" id="slideshow">
+        <!-- Static background title - PC only -->
+        <div class="bg-title" id="coupleNames" style="font-size: 10rem; top: 58%;" data-en="Lioul &amp; Mahlet" data-am="ሊዩል &amp; ማህሌት">Lioul &amp; Mahlet</div>
+        <!-- Mobile only title -->
+        <div class="mobile-title">THE WEDDING OF</div>
+        
         <div class="corner-ornament top-left"></div>
         <div class="corner-ornament top-right"></div>
         <div class="corner-ornament bottom-left"></div>
@@ -1017,60 +1204,95 @@
 
         <!-- Slide 1: Front (Welcome) -->
         <div class="slide" id="slide0">
-            <div class="bg-text-container">
-                <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
+            <img src="front%20en.webp" alt="Welcome" class="bg-image bg-image-en full-width-mobile">
+            <img src="front.webp" alt="Welcome Amharic" class="bg-image bg-image-am full-width-mobile">
+            <div class="bg-names-container">
                 <div class="bg-name-left">Lioul</div>
                 <div class="bg-name-right">Mahlet</div>
             </div>
-            <img src="front.webp" alt="Welcome" class="full-width-mobile">
         </div>
 
         <!-- Slide 2: Main (Details) -->
         <div class="slide" id="slide1">
-            <div class="bg-text-container">
-                <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
+            <img src="main%20en.webp" alt="Details" class="bg-image bg-image-en full-width-mobile">
+            <img src="main.webp" alt="Details Amharic" class="bg-image bg-image-am full-width-mobile">
+            <div class="bg-names-container">
                 <div class="bg-name-left">Lioul</div>
                 <div class="bg-name-right">Mahlet</div>
             </div>
-            <img src="main.webp" alt="Details" class="full-width-mobile">
         </div>
 
         <!-- Slide 3: B People (Agenda) -->
         <div class="slide" id="slide2">
-            <div class="bg-text-container">
-                <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
+            <img src="b%20people%20en.webp" alt="Agenda" class="bg-image bg-image-en">
+            <img src="b%20people.webp" alt="Agenda Amharic" class="bg-image bg-image-am">
+            <div class="bg-names-container">
                 <div class="bg-name-left">Lioul</div>
                 <div class="bg-name-right">Mahlet</div>
             </div>
-            <img src="b%20people.webp" alt="Agenda">
         </div>
 
         <!-- Slide 4: Final Front (All Together) -->
         <div class="slide" id="slide3">
-            <div class="bg-text-container">
-                <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
+            <img src="final%20front%20en.webp" alt="Together" class="bg-image bg-image-en mobile-swap" data-mobile-src="ffinal%20front%20en.webp" data-desktop-src="final%20front%20en.webp">
+            <img src="final%20front.webp" alt="Together Amharic" class="bg-image bg-image-am mobile-swap" data-mobile-src="ffinal%20front.webp" data-desktop-src="final%20front.webp">
+            <div class="bg-names-container">
                 <div class="bg-name-left">Lioul</div>
                 <div class="bg-name-right">Mahlet</div>
             </div>
-            <img src="final%20front.webp" alt="Together" class="mobile-swap" data-mobile-src="ffinal%20front.webp" data-desktop-src="final%20front.webp">
         </div>
 
-        <!-- Slide 5: Back to Front (Closing) -->
+        <!-- Slide 5: Locations Page -->
         <div class="slide" id="slide4">
-            <div class="bg-text-container">
-                <div class="bg-title" data-en="The Wedding of" data-am="የሠርግ ሥነ ሥርዓት">The Wedding of</div>
-                <div class="bg-name-left">Lioul</div>
-                <div class="bg-name-right">Mahlet</div>
+            <img src="front%20en.webp" alt="Locations" class="bg-image bg-image-en">
+            <img src="front.webp" alt="Locations Amharic" class="bg-image bg-image-am">
+            <div class="location-card">
+                <div class="location-title" data-en="Locations" data-am="ቦታዎች">Locations</div>
+
+                <!-- Groom's House -->
+                <div class="location-item">
+                    <div class="location-venue"
+                         data-en="Groom's House - Bole Rwanda area"
+                         data-am="የሙሽራው ቤት - ቦሌ ሩዋንዳ አካባቢ">
+                        Groom's House - Bole Rwanda area
+                    </div>
+                    <a class="location-link"
+                       href="https://maps.app.goo.gl/sx6ZANJP6u55DYsd7?g_st=ac"
+                       target="_blank" rel="noopener noreferrer"
+                       data-en="Open in Google Maps" data-am="በጉግል ካርታ ላይ ይክፈቱ">Open in Google Maps</a>
+                </div>
+
+                <!-- Bride's House -->
+                <div class="location-item">
+                    <div class="location-venue"
+                         data-en="Bride's House - Ayer Tena area"
+                         data-am="የሙሽራዋ ቤት - አየር ጠና አካባቢ">
+                        Bride's House - Ayer Tena area
+                    </div>
+                    <a class="location-link"
+                       href="https://maps.app.goo.gl/BfXc617f4z92b5Gw9?g_st=ac"
+                       target="_blank" rel="noopener noreferrer"
+                       data-en="Open in Google Maps" data-am="በጉግል ካርታ ላይ ይክፈቱ">Open in Google Maps</a>
+                </div>
+
+                <!-- Reception / Kokeb Hall -->
+                <div class="location-item">
+                    <div class="location-venue"
+                         data-en="Kokeb Hall - Megenagna 24 area"
+                         data-am="ኮከብ አዳራሸ - መገናኛ 24 አካባቢ">
+                        Kokeb Hall - Megenagna 24 area
+                    </div>
+                    <a class="location-link"
+                       href="https://maps.app.goo.gl/hDFHNVt72vNhMwvF7?g_st=ac"
+                       target="_blank" rel="noopener noreferrer"
+                       data-en="Open in Google Maps" data-am="በጉግል ካርታ ላይ ይክፈቱ">Open in Google Maps</a>
+                </div>
             </div>
-            <img src="front.webp" alt="Thank You">
-            <!-- <div class="final-message" id="finalMessage">We can't wait to celebrate with you!</div> -->
-            <div class="slide-label">Thank You</div>
-            <div class="slide-description">See You There</div>
         </div>
 
         <div class="progress-container" id="progressDots"></div>
         <!-- <div class="nav-hint">Click anywhere or use arrow keys to continue</div> -->
-        <button class="replay-btn" id="replayBtn" onclick="replay()" data-en="↻ Replay" data-am="↻ እንደገና">↻ Replay</button>
+        <button class="replay-btn" id="replayBtn" onclick="replay()" data-en="Home" data-am="↻ ወደ መጀመሪያ">Home</button>
     </div>
 
     <script>
@@ -1079,6 +1301,8 @@
         // Language selection function
         function selectLanguage(lang) {
             currentLanguage = lang;
+            // Set attribute on body so CSS can toggle EN/AM images
+            document.body.setAttribute('data-lang', lang);
             applyTranslations(lang);
             document.getElementById('languageScreen').classList.add('hidden');
             document.getElementById('introScreen').classList.add('visible');
@@ -1115,7 +1339,7 @@
             { id: 'slide1', label: 'Details' },
             { id: 'slide2', label: 'Agenda' },
             { id: 'slide3', label: 'Together' },
-            { id: 'slide4', label: 'Thank You' }
+            { id: 'slide4', label: 'Locations' }
         ];
 
         let currentSlide = 0;
