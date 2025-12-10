@@ -314,12 +314,14 @@
             width: 100%;
             height: 100%;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             background: #0a0a0a;
             opacity: 0;
             transition: opacity 1s ease;
             isolation: isolate;
+            overflow-y: auto;   /* allow vertical scrolling for tall slides */
+            overflow-x: hidden;
         }
 
         .slideshow.visible {
@@ -329,11 +331,12 @@
         .slide {
             position: absolute;
             width: 100%;
-            height: 100%;
+            height: auto;
+            min-height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center; /* center slide content vertically */
             opacity: 0;
             transition: opacity 1s ease;
             padding: 20px;
@@ -908,19 +911,20 @@
             /* Slideshow mobile */
             .slide {
                 padding: 10px;
+                justify-content: center; /* center slide contents vertically on small screens */
             }
 
             .slide img {
                 max-width: 95%;
                 max-height: 75vh;
-                margin-top: 500px;            
+                margin-top: 0;   /* no extra offset so centering works */
             }
 
             .slide img.full-width-mobile {
-                /* width: 100%;
+                width: 100%;
                 max-width: 100%;
-                height: auto; */
-                margin-top: 150px;            
+                height: auto;
+                margin-top: 0;   /* same centering behavior as other images */
             }
 
             /* Mobile - hide the scrolling marquee completely */
@@ -952,43 +956,7 @@
             }
 
             /* Mobile image styles */
-            .slide img {
-                margin-top: 50px;
-            }
-
-            /* #slide3 .bg-image {
-                margin-top: 190px; adjust to your preferred spacing
-            } */
-
-            /* English image on slide 2 */
-            #slide2 .bg-image-en {
-            margin-top: 93px;  /* set English margin */
-            }
-
-            /* English image on slide 3 */
-            #slide3 .bg-image-en {
-            margin-top: 194px;  /* set English margin */
-            }
-
-            /* Amharic image on slide 1 */
-            #slide1 .bg-image-am {
-            margin-top: 150px;  /* set Amharic margin (example) */
-            }
-
-            /* Amharic image on slide 2 */
-            #slide2 .bg-image-am {
-            margin-top: 38px;  /* set Amharic margin (example) */
-            }
-
-            /* Amharic image on slide 3 */
-            #slide3 .bg-image-am {
-            margin-top: 90px;  /* set Amharic margin (example) */
-            }
-
-            /* Amharic image on slide 4 */
-            #slide4 .bg-image-am {
-            margin-top: 38px;  /* set Amharic margin (example) */
-            }
+            
 
 
             /* body[data-lang="am"] #slide1 .bg-image-am {
