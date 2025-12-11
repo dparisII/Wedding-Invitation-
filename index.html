@@ -92,7 +92,7 @@
             height: 140px;
             border-radius: 50%;
             background: rgba(255,255,255,0.9);
-            border: 3px solid #d4af37;
+            border: 4px solid #d4af37;
             color: #d4af37;
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
@@ -107,7 +107,7 @@
         }
 
         .lang-btn:hover {
-            background: #d4af37;
+            background: #ffc400;
             color: #fff;
             transform: scale(1.1);
             box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
@@ -915,11 +915,15 @@
             .lang-btn {
                 width: 110px;
                 height: 110px;
-                font-size: 0.75rem;
+                font-size: 1.5xrem;
             }
 
             .lang-btn-am {
-                font-size: 1rem;
+                font-size: 1.5rem;
+            }
+
+            .lang-btn-en {
+                font-size: 1.0rem;
             }
 
             /* Description page mobile */
@@ -1167,7 +1171,7 @@
             <div class="language-title">እንኳን ደህና መጡ</div>
             <div class="language-subtitle">Choose your language | ቋንቋ ይምረጡ</div>
             <div class="language-buttons">
-                <button class="lang-btn" onclick="selectLanguage('en')">ENGLISH</button>
+                <button class="lang-btn lang-btn-en" onclick="selectLanguage('en')">ENGLISH</button>
                 <button class="lang-btn lang-btn-am" onclick="selectLanguage('am')">አማርኛ</button>
             </div>
         </div>
@@ -1176,13 +1180,13 @@
     <!-- Intro Screen -->
     <div class="intro-screen" id="introScreen">
         <div class="intro-text">
-            <div class="intro-subtitle" data-en="You are cordially <br> <br> invited to" data-am="በአክብሮት ተጋብዘዋል ወደ">You are cordially <br><br>  invited to</div>
+            <div class="intro-subtitle" data-en="You are cordially <br> <br> invited to" data-am="በአክብሮት ጠርተንዎታል">You are cordially <br><br>  invited to</div>
             <div class="intro-title" data-en="THE WEDDING OF" data-am="የሠርግ ሥነ ሥርዓት">THE WEDDING OF</div>
             <div class="intro-names" data-en="Mr. LIOUL ASFAW" data-am="አቶ ልዑል አሰፋው">Mr LIOUL ASFAW</div>
             <div class="intro-and"data-en="&" data-am="እና">&</div>
             <div class="intro-names" data-en="Dr. MAHLET MITKU" data-am="ዶ/ር ማህሌት  ምትኩ">Dr. MAHLET MITKU</div>
             <!-- <div class="intro-date" data-en="Join us in celebrating our love" data-am="ፍቅራችንን ለማክበር ይቀላቀሉን">Join us in celebrating our love</div> -->
-            <button class="enter-btn" onclick="openDoors()" data-en="Open Invitation" data-am="ጥሪዎን ይመልክቱ">Open Invitation</button>
+            <button class="enter-btn" onclick="openDoors()" data-en="Open Invitation" data-am="ጥሪዎን ይክፈቱ">Open Invitation</button>
         </div>
     </div>
 
