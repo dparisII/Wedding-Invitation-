@@ -382,6 +382,10 @@
         /* White background = burgundy text */
         #slide4::before { background-image: url('Texture%20Background%20white.webp'); }
         #slide4 .bg-name-left, #slide4 .bg-name-right { color: #722F37 !important; }
+        
+        /* Gift Registry and Calendar - same texture as Locations */
+        #slide5::before { background-image: url('Texture%20Background%20white.webp'); }
+        #slide6::before { background-image: url('Texture%20Background%20white.webp'); }
 
         .slide.active {
             opacity: 1;
@@ -787,7 +791,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center; /* center content vertically */
-            background: rgba(10, 10, 10, 0.9); /* darker overlay to cover entire slide */
+            background: rgba(10, 10, 10, 0.75); /* semi-transparent overlay to show background image */
             border-radius: 0;
             border: none;
             overflow-y: auto;
@@ -1408,7 +1412,7 @@
             <div class="intro-title" data-en="THE WEDDING OF" data-am="የሠርግ ሥነ ሥርዓት">THE WEDDING OF</div>
             <div class="intro-names" data-en="Mr. LIOUL ASFAW" data-am="አቶ ልዑል አሰፋው">Mr LIOUL ASFAW</div>
             <div class="intro-and"data-en="&" data-am="እና">&</div>
-            <div class="intro-names" data-en="Dr. MAHLET MITKU" data-am="ዶ/ር ማህሌት  ምትኩ">Dr. MAHLET MITKU</div>
+            <div class="intro-names" data-en="Dr. MAHLET MITIKU" data-am="ዶ/ር ማህሌት  ምትኩ">Dr. MAHLET MITIKU</div>
             <!-- <div class="intro-date" data-en="Join us in celebrating our love" data-am="ፍቅራችንን ለማክበር ይቀላቀሉን">Join us in celebrating our love</div> -->
             <button class="enter-btn" onclick="openDoors()" data-en="Open Invitation" data-am="ጥሪዎን ይክፈቱ">Open Invitation</button>
         </div>
@@ -1496,13 +1500,63 @@
             </div>
         </div>
 
-        <!-- Slide 4: Final Front (All Together) -->
-        <div class="slide" id="slide3">
-            <img src="final%20front%20en.webp" alt="Together" class="bg-image bg-image-en mobile-swap" data-mobile-src="ffinal%20front%20en.webp" data-desktop-src="final%20front%20en.webp">
-            <img src="final%20front.webp" alt="Together Amharic" class="bg-image bg-image-am mobile-swap" data-mobile-src="ffinal%20front.webp" data-desktop-src="final%20front.webp">
-            <div class="bg-names-container">
-                <div class="bg-name-left" data-en="Lioul" data-am="ልዑል">Lioul</div>
-                <div class="bg-name-right" data-en="Mahlet" data-am="ማህሌት ">Mahlet</div>
+        <!-- Slide 6: Donate Page -->
+        <div class="slide" id="slide5">
+            <img src="front%20en.webp" alt="Gift Registry" class="bg-image bg-image-en">
+            <img src="front.webp" alt="Gift Registry Amharic" class="bg-image bg-image-am">
+            <div class="location-card">
+                <div class="donate-wrapper">
+                <div class="location-title" data-en="Gift Registry" data-am="የስጦታ መረጃ">Gift Info</div>
+                
+                <div class="donate-message" data-en="Your presence is the greatest gift.<br>However, if you wish to bless us with a gift, we would be grateful." data-am="የክብር እንግዳችን ሆነው በመገኘትዎ ለእኛ ታላቅ ስጦታ ነው። <br> ሆኖም፣ ለሠርጋን ስጦታ ለማበርከት ካሰቡ ከዚህ በታች ከተዘረዘሩት ምርጫዎች ውስጥ ይጠቀሙ። እናመሰግናለን።">
+                    Your presence is the greatest gift.<br>However, if you wish to bless us with a gift, we would be grateful.
+                </div>
+
+                <div class="donate-section expandable" onclick="toggleDonateSection(this)">
+                    <div class="donate-summary">
+                        <div class="donate-label" data-en="Bank Transfer" data-am="የባንክ ዝውውር">Bank Transfer</div>
+                        <div class="donate-detail" data-en="Commercial Bank of Ethiopia" data-am="የኢትዮጵያ ንግድ ባንክ">Commercial Bank of Ethiopia</div>
+                        <div class="expand-hint" data-en="Tap for details" data-am="ለዝርዝር ይንኩ">Tap for details</div>
+                    </div>
+                    <div class="donate-details">
+                        <div class="donate-name" data-en="Lioul Asfaw" data-am="ልዑል አሰፋው">Lioul Asfaw</div>
+                        <div class="donate-account-row">
+                            <span class="donate-account">1000187209987</span>
+                            <button class="copy-btn-sm" onclick="event.stopPropagation(); copyToClipboard('1000187209987', this)">⧉</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="donate-section expandable" onclick="toggleDonateSection(this)">
+                    <div class="donate-summary">
+                        <div class="donate-label" data-en="Bank Transfer" data-am="የባንክ ዝውውር">Bank Transfer</div>
+                        <div class="donate-detail" data-en="Commercial Bank of Ethiopia" data-am="የኢትዮጵያ ንግድ ባንክ">Commercial Bank of Ethiopia</div>
+                        <div class="expand-hint" data-en="Tap for details" data-am="ለዝርዝር ይንኩ">Tap for details</div>
+                    </div>
+                    <div class="donate-details">
+                        <div class="donate-name" data-en="Mahlet Mitiku" data-am="ማህሌት ምትኩ">Mahlet Mitiku</div>
+                        <div class="donate-account-row">
+                            <span class="donate-account">1000271237344</span>
+                            <button class="copy-btn-sm" onclick="event.stopPropagation(); copyToClipboard('1000271237344', this)">⧉</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="donate-section expandable" onclick="toggleDonateSection(this)">
+                    <div class="donate-summary">
+                        <div class="donate-label" data-en="International Transfer" data-am="ዓለም አቀፍ ዝውውር">International Transfer</div>
+                        <div class="donate-label">Zelle</div>
+                        <div class="donate-detail">lioulasfaw@gmail.com</div>
+                        <div class="expand-hint" data-en="Tap for details" data-am="ለዝርዝር ይንኩ">Tap for details</div>
+                    </div>
+                    <div class="donate-details">
+                        <div class="donate-account-row">
+                            <span class="donate-account">lioulasfaw@gmail.com</span>
+                            <button class="copy-btn-sm" onclick="event.stopPropagation(); copyToClipboard('lioulasfaw@gmail.com', this)">⧉</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
 
@@ -1557,67 +1611,10 @@
             </div>
         </div>
 
-        <!-- Slide 6: Donate Page -->
-        <div class="slide" id="slide5">
-            <div class="location-card">
-                <div class="donate-wrapper">
-                <div class="location-title" data-en="Gift Registry" data-am="የስጦታ መመዝገቢያ">Gift Registry</div>
-                
-                <div class="donate-message" data-en="Your presence is the greatest gift.<br>However, if you wish to bless us with a gift, we would be grateful." data-am="መገኘትዎ ትልቁ ስጦታ ነው።<br>ነገር ግን በስጦታ ሊባርኩን ከፈለጉ፣ እናመሰግናለን።">
-                    Your presence is the greatest gift.<br>However, if you wish to bless us with a gift, we would be grateful.
-                </div>
-
-                <div class="donate-section expandable" onclick="toggleDonateSection(this)">
-                    <div class="donate-summary">
-                        <div class="donate-label" data-en="Bank Transfer" data-am="የባንክ ዝውውር">Bank Transfer</div>
-                        <div class="donate-detail" data-en="Commercial Bank of Ethiopia" data-am="የኢትዮጵያ ንግድ ባንክ">Commercial Bank of Ethiopia</div>
-                        <div class="expand-hint" data-en="Tap for details" data-am="ለዝርዝር ይንኩ">Tap for details</div>
-                    </div>
-                    <div class="donate-details">
-                        <div class="donate-name" data-en="Lioul Asfaw" data-am="ልዑል አሰፋው">Lioul Asfaw</div>
-                        <div class="donate-account-row">
-                            <span class="donate-account">1000187209987</span>
-                            <button class="copy-btn-sm" onclick="event.stopPropagation(); copyToClipboard('1000187209987', this)">⧉</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="donate-section expandable" onclick="toggleDonateSection(this)">
-                    <div class="donate-summary">
-                        <div class="donate-label" data-en="International Transfer" data-am="ዓለም አቀፍ ዝውውር">International Transfer</div>
-                        <div class="donate-detail">Wells Fargo Bank</div>
-                        <div class="expand-hint" data-en="Tap for details" data-am="ለዝርዝር ይንኩ">Tap for details</div>
-                    </div>
-                    <div class="donate-details">
-                        <div class="donate-info-row"><span class="info-label">SWIFT/BIC:</span> <span>WFBIUS6S</span> <button class="copy-btn-sm" onclick="event.stopPropagation(); copyToClipboard('WFBIUS6S', this)">⧉</button></div>
-                        <div class="donate-info-row"><span class="info-label">Bank:</span> <span>Wells Fargo Bank, N.A.</span></div>
-                        <div class="donate-info-row"><span class="info-label">Bank Address:</span> <span>420 Montgomery, San Francisco, CA 94104</span></div>
-                        <div class="donate-info-row"><span class="info-label">Beneficiary:</span> <span>Lioul Desta</span></div>
-                        <div class="donate-info-row"><span class="info-label">Account #:</span> <span>1441494851</span> <button class="copy-btn-sm" onclick="event.stopPropagation(); copyToClipboard('1441494851', this)">⧉</button></div>
-                        <div class="donate-info-row"><span class="info-label">Address:</span> <span>1202 Drexel Dr, Plano, TX</span></div>
-                        <div class="donate-info-row"><span class="info-label">Phone:</span> <span>469 682 7178</span> <button class="copy-btn-sm" onclick="event.stopPropagation(); copyToClipboard('4696827178', this)">⧉</button></div>
-                    </div>
-                </div>
-
-                <div class="donate-section expandable" onclick="toggleDonateSection(this)">
-                    <div class="donate-summary">
-                        <div class="donate-label">Zelle</div>
-                        <div class="donate-detail">lioulasfaw@gmail.com</div>
-                        <div class="expand-hint" data-en="Tap for details" data-am="ለዝርዝር ይንኩ">Tap for details</div>
-                    </div>
-                    <div class="donate-details">
-                        <div class="donate-account-row">
-                            <span class="donate-account">lioulasfaw@gmail.com</span>
-                            <button class="copy-btn-sm" onclick="event.stopPropagation(); copyToClipboard('lioulasfaw@gmail.com', this)">⧉</button>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Slide 7: Add to Calendar Page -->
         <div class="slide" id="slide6">
+            <img src="front%20en.webp" alt="Calendar" class="bg-image bg-image-en">
+            <img src="front.webp" alt="Calendar Amharic" class="bg-image bg-image-am">
             <div class="location-card">
                 <div class="location-title" data-en="Save the Date" data-am="ቀኑን ያስታውሱ">Save the Date</div>
                 
@@ -1640,6 +1637,16 @@
                        download="lioul-mahlet-wedding.ics"
                        data-en="Download for Apple/Outlook" data-am="ለ Apple/Outlook ያውርዱ">Download for Apple/Outlook</a>
                 </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Final Front (All Together) -->
+        <div class="slide" id="slide3">
+            <img src="final%20front%20en.webp" alt="Together" class="bg-image bg-image-en mobile-swap" data-mobile-src="ffinal%20front%20en.webp" data-desktop-src="final%20front%20en.webp">
+            <img src="final%20front.webp" alt="Together Amharic" class="bg-image bg-image-am mobile-swap" data-mobile-src="ffinal%20front.webp" data-desktop-src="final%20front.webp">
+            <div class="bg-names-container">
+                <div class="bg-name-left" data-en="Lioul" data-am="ልዑል">Lioul</div>
+                <div class="bg-name-right" data-en="Mahlet" data-am="ማህሌት ">Mahlet</div>
             </div>
         </div>
 
@@ -1694,10 +1701,10 @@
             { id: 'slide0', label: 'Welcome' },
             { id: 'slide1', label: 'Details' },
             { id: 'slide2', label: 'Agenda' },
-            { id: 'slide3', label: 'Together' },
-            { id: 'slide4', label: 'Locations' },
             { id: 'slide5', label: 'Donate' },
-            { id: 'slide6', label: 'Calendar' }
+            { id: 'slide4', label: 'Locations' },
+            { id: 'slide6', label: 'Calendar' },
+            { id: 'slide3', label: 'Together' }
         ];
 
         let currentSlide = 0;
@@ -1744,8 +1751,8 @@
                 const targetTag = e.target.tagName.toLowerCase();
                 if (targetTag === 'button' || targetTag === 'a') return;
 
-                // Disable tap navigation on Gift Registry slide (slide5)
-                if (currentSlide === 5) return;
+                // Disable tap navigation on Gift Registry slide (now at index 3)
+                if (currentSlide === 3) return;
 
                 // Stop auto-advance once user manually navigates
                 clearInterval(autoAdvance);
@@ -1773,8 +1780,8 @@
         slideshowElement.addEventListener('touchend', (e) => {
             if (touchStartX === null) return;
 
-            // Disable swipe navigation on Gift Registry slide (slide5)
-            if (currentSlide === 5) {
+            // Disable swipe navigation on Gift Registry slide (now at index 3)
+            if (currentSlide === 3) {
                 touchStartX = null;
                 return;
             }
@@ -1860,11 +1867,12 @@
             if (mobileTitle) {
                 mobileTitle.classList.remove('dark-on-light', 'light-on-burgundy', 'hidden-on-slide');
 
-                // Hide title on Locations, Donate, and Calendar slides (dark overlay pages)
-                if (index >= 4) {
+                // Hide title on Donate (3), Locations (4), Calendar (5) slides (dark overlay pages)
+                // New order: 0=Welcome, 1=Details, 2=Agenda, 3=Donate, 4=Locations, 5=Calendar, 6=Together
+                if (index >= 3 && index <= 5) {
                     mobileTitle.classList.add('hidden-on-slide');
                 } else {
-                    // Slides 0 and 2 use white texture; 1 and 3 use burgundy backgrounds
+                    // Slides 0 and 2 use white texture; 1 and 6 use burgundy backgrounds
                     if (index === 0 || index === 2) {
                         mobileTitle.classList.add('dark-on-light');
                     } else {
