@@ -769,8 +769,10 @@
             z-index: 110;
         }
 
-        /* Full-screen layout for locations slide */
-        #slide4 .location-card {
+        /* Full-screen layout for locations, donate, and calendar slides */
+        #slide4 .location-card,
+        #slide5 .location-card,
+        #slide6 .location-card {
             position: absolute;
             top: 0;      /* cover from very top */
             left: 0;
@@ -780,15 +782,28 @@
             margin: 0;
             width: 100%;
             max-width: none;
-            padding: 40px 24px 32px;
+            padding: 20px 24px 100px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* center the locations list vertically */
+            justify-content: center; /* center content vertically */
             background: rgba(10, 10, 10, 0.9); /* darker overlay to cover entire slide */
             border-radius: 0;
             border: none;
             overflow-y: auto;
+        }
+
+        /* Gift Registry slide - start from top to allow scrolling when expanded */
+        #slide5 .location-card {
+            justify-content: flex-start;
+            padding-top: 30px;
+        }
+
+        .donate-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
         }
 
         .location-title {
@@ -843,6 +858,215 @@
         }
 
         .location-link:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+        }
+
+        /* ========== DONATE PAGE STYLES ========== */
+        .donate-message {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 320px;
+        }
+
+        .donate-section {
+            margin-top: 15px;
+            padding: 15px 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.03);
+            width: 280px;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .donate-section.expandable:hover {
+            border-color: rgba(212, 175, 55, 0.6);
+        }
+
+        .donate-section.expanded {
+            min-height: auto;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .donate-summary {
+            text-align: center;
+        }
+
+        .expand-hint {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            color: rgba(212, 175, 55, 0.6);
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        .donate-section.expanded .expand-hint {
+            display: none;
+        }
+
+        .donate-details {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: left;
+        }
+
+        .donate-section.expanded .donate-details {
+            display: block;
+        }
+
+        .donate-info-row {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .info-label {
+            color: #d4af37;
+            min-width: 90px;
+        }
+
+        .copy-btn-sm {
+            padding: 2px 6px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 3px;
+            background: transparent;
+            color: #d4af37;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: auto;
+        }
+
+        .copy-btn-sm:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+        }
+
+        .copy-btn-sm.copied {
+            background: #4CAF50;
+            border-color: #4CAF50;
+            color: #fff;
+        }
+
+        .donate-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .donate-detail {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 5px;
+        }
+
+        .donate-account {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: #d4af37;
+            letter-spacing: 1px;
+        }
+
+        .donate-account-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .copy-btn {
+            padding: 4px 12px;
+            border: 1px solid #d4af37;
+            border-radius: 4px;
+            background: transparent;
+            color: #d4af37;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+        }
+
+        .copy-btn.copied {
+            background: #4CAF50;
+            border-color: #4CAF50;
+            color: #fff;
+        }
+
+        .donate-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        /* ========== CALENDAR PAGE STYLES ========== */
+        .calendar-message {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            max-width: 320px;
+        }
+
+        .calendar-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+
+        .calendar-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .calendar-link {
+            display: inline-block;
+            padding: 12px 24px;
+            border: 1px solid #d4af37;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #d4af37;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            min-width: 260px;
+            text-align: center;
+        }
+
+        .calendar-link:hover {
             background: #d4af37;
             color: #0a0a0a;
         }
@@ -1333,6 +1557,92 @@
             </div>
         </div>
 
+        <!-- Slide 6: Donate Page -->
+        <div class="slide" id="slide5">
+            <div class="location-card">
+                <div class="donate-wrapper">
+                <div class="location-title" data-en="Gift Registry" data-am="የስጦታ መመዝገቢያ">Gift Registry</div>
+                
+                <div class="donate-message" data-en="Your presence is the greatest gift.<br>However, if you wish to bless us with a gift, we would be grateful." data-am="መገኘትዎ ትልቁ ስጦታ ነው።<br>ነገር ግን በስጦታ ሊባርኩን ከፈለጉ፣ እናመሰግናለን።">
+                    Your presence is the greatest gift.<br>However, if you wish to bless us with a gift, we would be grateful.
+                </div>
+
+                <div class="donate-section expandable" onclick="toggleDonateSection(this)">
+                    <div class="donate-summary">
+                        <div class="donate-label" data-en="Bank Transfer" data-am="የባንክ ዝውውር">Bank Transfer</div>
+                        <div class="donate-detail" data-en="Commercial Bank of Ethiopia" data-am="የኢትዮጵያ ንግድ ባንክ">Commercial Bank of Ethiopia</div>
+                        <div class="expand-hint" data-en="Tap for details" data-am="ለዝርዝር ይንኩ">Tap for details</div>
+                    </div>
+                    <div class="donate-details">
+                        <div class="donate-name" data-en="Lioul Asfaw" data-am="ልዑል አሰፋው">Lioul Asfaw</div>
+                        <div class="donate-account-row">
+                            <span class="donate-account">1000187209987</span>
+                            <button class="copy-btn-sm" onclick="event.stopPropagation(); copyToClipboard('1000187209987', this)">⧉</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="donate-section expandable" onclick="toggleDonateSection(this)">
+                    <div class="donate-summary">
+                        <div class="donate-label" data-en="International Transfer" data-am="ዓለም አቀፍ ዝውውር">International Transfer</div>
+                        <div class="donate-detail">Wells Fargo Bank</div>
+                        <div class="expand-hint" data-en="Tap for details" data-am="ለዝርዝር ይንኩ">Tap for details</div>
+                    </div>
+                    <div class="donate-details">
+                        <div class="donate-info-row"><span class="info-label">SWIFT/BIC:</span> <span>WFBIUS6S</span> <button class="copy-btn-sm" onclick="event.stopPropagation(); copyToClipboard('WFBIUS6S', this)">⧉</button></div>
+                        <div class="donate-info-row"><span class="info-label">Bank:</span> <span>Wells Fargo Bank, N.A.</span></div>
+                        <div class="donate-info-row"><span class="info-label">Bank Address:</span> <span>420 Montgomery, San Francisco, CA 94104</span></div>
+                        <div class="donate-info-row"><span class="info-label">Beneficiary:</span> <span>Lioul Desta</span></div>
+                        <div class="donate-info-row"><span class="info-label">Account #:</span> <span>1441494851</span> <button class="copy-btn-sm" onclick="event.stopPropagation(); copyToClipboard('1441494851', this)">⧉</button></div>
+                        <div class="donate-info-row"><span class="info-label">Address:</span> <span>1202 Drexel Dr, Plano, TX</span></div>
+                        <div class="donate-info-row"><span class="info-label">Phone:</span> <span>469 682 7178</span> <button class="copy-btn-sm" onclick="event.stopPropagation(); copyToClipboard('4696827178', this)">⧉</button></div>
+                    </div>
+                </div>
+
+                <div class="donate-section expandable" onclick="toggleDonateSection(this)">
+                    <div class="donate-summary">
+                        <div class="donate-label">Zelle</div>
+                        <div class="donate-detail">lioulasfaw@gmail.com</div>
+                        <div class="expand-hint" data-en="Tap for details" data-am="ለዝርዝር ይንኩ">Tap for details</div>
+                    </div>
+                    <div class="donate-details">
+                        <div class="donate-account-row">
+                            <span class="donate-account">lioulasfaw@gmail.com</span>
+                            <button class="copy-btn-sm" onclick="event.stopPropagation(); copyToClipboard('lioulasfaw@gmail.com', this)">⧉</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Add to Calendar Page -->
+        <div class="slide" id="slide6">
+            <div class="location-card">
+                <div class="location-title" data-en="Save the Date" data-am="ቀኑን ያስታውሱ">Save the Date</div>
+                
+                <div class="calendar-message" data-en="Add our wedding to your calendar so you don't miss it!" data-am="ሠርጋችንን እንዳያመልጥዎ በካላንደርዎ ላይ ያስቀምጡ!">
+                    Add our wedding to your calendar so you don't miss it!
+                </div>
+
+                <div class="calendar-date" data-en="January 10, 2026 • 6:00 PM" data-am="ጥር 2 ቀን 2018 ዓ.ም  •  ከምሽቱ 12:00">
+                    January 10, 2026 • 6:00 PM
+                </div>
+
+                <div class="calendar-buttons">
+                    <a class="calendar-link" 
+                       href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Lioul+%26+Mahlet+Wedding&dates=20260110T150000Z/20260110T190000Z&details=Wedding+celebration+of+Lioul+and+Mahlet&location=Kokeb+Hall,+Bole+8,+2Q6X%2B3V3,+9,+Addis+Ababa,+Ethiopia"
+                       target="_blank" rel="noopener noreferrer"
+                       data-en="Add to Google Calendar" data-am="ጉግል ካላንደር ላይ ያስቀምጡ">Add to Google Calendar</a>
+                    
+                    <a class="calendar-link"
+                       href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20260110T150000Z%0ADTEND:20260110T190000Z%0ASUMMARY:Lioul%20%26%20Mahlet%20Wedding%0ADESCRIPTION:Wedding%20celebration%20of%20Lioul%20and%20Mahlet%0ALOCATION:Kokeb%20Hall%2C%20Bole%208%2C%202Q6X%2B3V3%2C%209%2C%20Addis%20Ababa%2C%20Ethiopia%0AEND:VEVENT%0AEND:VCALENDAR"
+                       download="lioul-mahlet-wedding.ics"
+                       data-en="Download for Apple/Outlook" data-am="ለ Apple/Outlook ያውርዱ">Download for Apple/Outlook</a>
+                </div>
+            </div>
+        </div>
+
         <div class="nav-arrow nav-left" id="navLeft">&#10094;</div>
         <div class="nav-arrow nav-right" id="navRight">&#10095;</div>
 
@@ -1385,7 +1695,9 @@
             { id: 'slide1', label: 'Details' },
             { id: 'slide2', label: 'Agenda' },
             { id: 'slide3', label: 'Together' },
-            { id: 'slide4', label: 'Locations' }
+            { id: 'slide4', label: 'Locations' },
+            { id: 'slide5', label: 'Donate' },
+            { id: 'slide6', label: 'Calendar' }
         ];
 
         let currentSlide = 0;
@@ -1432,6 +1744,9 @@
                 const targetTag = e.target.tagName.toLowerCase();
                 if (targetTag === 'button' || targetTag === 'a') return;
 
+                // Disable tap navigation on Gift Registry slide (slide5)
+                if (currentSlide === 5) return;
+
                 // Stop auto-advance once user manually navigates
                 clearInterval(autoAdvance);
                 document.getElementById('replayBtn').classList.add('visible');
@@ -1457,6 +1772,13 @@
 
         slideshowElement.addEventListener('touchend', (e) => {
             if (touchStartX === null) return;
+
+            // Disable swipe navigation on Gift Registry slide (slide5)
+            if (currentSlide === 5) {
+                touchStartX = null;
+                return;
+            }
+
             const endX = e.changedTouches[0].clientX;
             const diffX = endX - touchStartX;
 
@@ -1538,8 +1860,8 @@
             if (mobileTitle) {
                 mobileTitle.classList.remove('dark-on-light', 'light-on-burgundy', 'hidden-on-slide');
 
-                // Hide title on Locations slide (last page)
-                if (index === 4) {
+                // Hide title on Locations, Donate, and Calendar slides (dark overlay pages)
+                if (index >= 4) {
                     mobileTitle.classList.add('hidden-on-slide');
                 } else {
                     // Slides 0 and 2 use white texture; 1 and 3 use burgundy backgrounds
@@ -1568,6 +1890,24 @@
             if (currentSlide < slides.length - 1) {
                 showSlide(currentSlide + 1);
             }
+        }
+
+        function copyToClipboard(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = currentLanguage === 'am' ? '✓' : 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+
+        function toggleDonateSection(section) {
+            section.classList.toggle('expanded');
         }
 
         function prevSlide() {
